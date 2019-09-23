@@ -4,7 +4,7 @@ RSpec.describe Game do
   describe "move to right" do
     let(:game) { Game.new }
 
-    it '' do
+    xit do
       initial_screen =
         ":::::\n" +
         "==O==\n" +
@@ -12,7 +12,7 @@ RSpec.describe Game do
         "==O==\n" +
         "Q    "
       expect(game.screen).to eq(initial_screen)
-      game.direita
+      game.right
 
       waited_screen =
         ":::::\n" +
@@ -22,6 +22,28 @@ RSpec.describe Game do
         " Q   "
       expect(game.screen).to eq(waited_screen)
     end
+  end
 
+  describe "fall into water" do
+    let(:game) { Game.new }
+
+    xit do
+      initial_screen =
+        ":::::\n" +
+        "==O==\n" +
+        "==O==\n" +
+        "==O==\n" +
+        "Q    "
+      expect(game.screen).to eq(initial_screen)
+      game.up
+
+      waited_screen =
+        ":::::\n" +
+        "==O==\n" +
+        "==O==\n" +
+        "X=O==\n" +
+        "     "
+      expect(game.screen).to eq(waited_screen)
+    end
   end
 end

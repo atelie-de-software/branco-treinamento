@@ -72,12 +72,11 @@ RSpec.describe Game do
     end
 
     context 'when frog on rock' do
-      game.right
-      game.right
-      game.up
-      game.up
-
       xit 'must die when moving left' do
+        game.right
+        game.right
+        game.up
+        game.up
         game.left
 
         expected_screen =
@@ -91,7 +90,11 @@ RSpec.describe Game do
       end
 
       xit 'moving right' do
-        move.right
+        game.right
+        game.right
+        game.up
+        game.up
+        game.right
 
         expected_screen =
           ":::::\n" +

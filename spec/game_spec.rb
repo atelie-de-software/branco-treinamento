@@ -64,7 +64,7 @@ RSpec.describe Game do
         ":::::\n" +
         "==O==\n" +
         "==O==\n" +
-        "X=O==\n" +
+        "==O==\n" +
         "     "
       expect(game.screen).to eq(waited_screen)
     end
@@ -87,7 +87,7 @@ RSpec.describe Game do
         "::M::\n" +
         "==O==\n" +
         "==O==\n" +
-        "X=O==\n" +
+        "==O==\n" +
         "     "
       expect(game.screen).to eq(waited_screen)
     end

@@ -1,34 +1,15 @@
 require './src/test'
-# require './src/frog'
+require './src/frog'
 
 RSpec.describe Test do
   describe "moviment" do
-    let!(:field) do
-      [
-        ['=','=','='],
-        ['=','Q','='],
-        ['=','=','=']
-      ]
-    end
+    let!(:frog) { Frog.new }
 
-    context "to stay untouch" do
-      let!(:untouch) { [ ['=','=','='], ['=','Q','='], ['=','=','='] ] }
-
+    context '#get_coordinates' do
       it do
-        expect(field[0]).to match_array untouch[0]
-        expect(field[1]).to match_array untouch[1]
-        expect(field[2]).to match_array untouch[2]
+        expect(frog.get_coordinates).to match_array [0,0]
       end
     end
 
-    context "to go up" do
-      let!(:to_up) { [ ['=','Q','='], ['=','=','='], ['=','=','='] ] }
-
-      it do
-        expect(field[0]).to match_array to_up[0]
-        expect(field[1]).to match_array to_up[1]
-        expect(field[2]).to match_array to_up[2]
-      end
-    end
   end
 end

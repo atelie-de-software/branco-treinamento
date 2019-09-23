@@ -71,7 +71,6 @@ RSpec.describe Game do
       game.up
 
       xit 'must die when moving left' do
-        expect(game.screen).to eq(initial_screen)
         game.left
 
         expected_screen =
@@ -85,7 +84,6 @@ RSpec.describe Game do
       end
 
       xit 'moving right' do
-        expect(game.screen).to eq(initial_screen)
         move.right
 
         expected_screen =

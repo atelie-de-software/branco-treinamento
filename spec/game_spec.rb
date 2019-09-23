@@ -1,17 +1,25 @@
 require './src/game'
 
 RSpec.describe Game do
-  describe "move to right" do
+
+  describe "initial screen" do
     let(:game) { Game.new }
 
     it do
-      initial_screen =
+      expected_screen =
         ":::::\n" +
         "==O==\n" +
         "==O==\n" +
         "==O==\n" +
         "M    "
-      expect(game.screen).to eq(initial_screen)
+      expect(game.screen).to eq(expected_screen)
+    end
+  end
+
+  describe "move to right" do
+    let(:game) { Game.new }
+
+    it do
       game.right
 
       expected_screen =
@@ -28,13 +36,6 @@ RSpec.describe Game do
     let(:game) { Game.new }
 
     it do
-      initial_screen =
-        ":::::\n" +
-        "==O==\n" +
-        "==O==\n" +
-        "==O==\n" +
-        "  M  "
-      expect(game.screen).to eq(initial_screen)
       game.right
       game.right
       game.up
@@ -72,11 +73,14 @@ RSpec.describe Game do
     end
 
     context 'when frog on rock' do
+      before(:each) do
+        game.right
+        game.right
+        game.up
+        game.up
+      end
+
       xit 'must die when moving left' do
-        game.right
-        game.right
-        game.up
-        game.up
         game.left
 
         expected_screen =
@@ -90,10 +94,6 @@ RSpec.describe Game do
       end
 
       xit 'moving right' do
-        game.right
-        game.right
-        game.up
-        game.up
         game.right
 
         expected_screen =

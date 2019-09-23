@@ -8,7 +8,7 @@ class Frog
     [@x, @y]
   end
 
-  def up
+  def go_up
     @y += 1
   end
 end

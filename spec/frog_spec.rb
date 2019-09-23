@@ -11,5 +11,13 @@ RSpec.describe Test do
       end
     end
 
+    context '#go_up' do
+      subject { frog.go_up }
+      it do
+        subject
+        expect(frog.get_coordinates).to match_array [0,1]
+      end
+    end
+
   end
 end

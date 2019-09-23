@@ -11,16 +11,5 @@ Dispel::Screen.open do |screen|
     next unless key
 
     exit(true) if key == :"Ctrl+c"
-
-    x += 1 if key == :right
-    x -= 1 if key == :left
-    y += 1 if key == :up
-    y -= 1 if key == :down
-
-    output = "The time is #{Time.now}\n"
-    next if key == :timeout
-
-    output += "You pressed #{key}\n"
-    output += "x: #{x} y: #{y}\n"
-  end
+    Game.update(key)
 end

@@ -8,8 +8,8 @@ class Game
     @world = World.new(20, 10)
   end
 
-  def update
-
+  def update(key)
+    
   end
 
   def output

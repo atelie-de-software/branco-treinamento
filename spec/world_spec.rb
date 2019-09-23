@@ -9,11 +9,11 @@ RSpec.describe World do
       expect(subject.first.count).to eq 10
     end
 
-    xit 'the first line is land' do
+    it 'the first line is land' do
       expect(subject.first).to eq [ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     end
 
-    xit 'the last line is land' do
+    it 'the last line is land' do
       expect(subject.first).to eq [ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     end
 

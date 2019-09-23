@@ -4,27 +4,20 @@ class Game
     @frog_y = 5
   end
 
-  def sobe
+  def up
   end
 
-  def desce
+  def down
   end
 
-  def esquerda
+  def left
   end
 
-  def direita
+  def right
   end
 
-  def tela
-    result = ''
-    result = Array.new(5) do |y|
-      Array.new(7) do |x|
-        next ' ' if y == 0 || y == (size_y - 1)
-        next 'O' if x == 4
-        next '='
-      end
-    end
+  def screen
+    ''
   end
 
   def tick

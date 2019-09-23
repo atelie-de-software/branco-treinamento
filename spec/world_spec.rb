@@ -2,19 +2,21 @@ require './src/world'
 
 RSpec.describe World do
   describe "#get_world" do
-    subject { World.new.get_world }
+    let(:size_x) { 20 }
+    let(:size_y) { 10 }
+    subject { World.new(size_x, size_y).world }
 
     it "return a world with a fixed size of 10x10" do
-      expect(subject.count).to eq 10
-      expect(subject.first.count).to eq 10
+      expect(subject.count).to eq size_y
+      expect(subject.first.count).to eq size_x
     end
 
     it 'the first line is land' do
-      expect(subject.first).to eq [ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+      expect(subject.first.first).to eq ' '
     end
 
     it 'the last line is land' do
-      expect(subject.first).to eq [ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+      expect(subject.first.last).to eq ' '
     end
 
     it "the elements on the 4th line are rocks" do

@@ -13,11 +13,38 @@ RSpec.describe Test do
 
     context '#go_up' do
       subject { frog.go_up }
+
       it do
         subject
         expect(frog.get_coordinates).to match_array [0,1]
       end
     end
 
+    context '#go_down' do
+      subject { frog.go_down }
+
+      it do
+        subject
+        expect(frog.get_coordinates).to match_array [0,-1]
+      end
+    end
+
+    context '#go_left' do
+      subject { frog.go_left }
+
+      it do
+        subject
+        expect(frog.get_coordinates).to match_array [-1,0]
+      end
+    end
+
+    context '#go_right' do
+      subject { frog.go_right }
+
+      it do
+        subject
+        expect(frog.get_coordinates).to match_array [1,0]
+      end
+    end
   end
 end

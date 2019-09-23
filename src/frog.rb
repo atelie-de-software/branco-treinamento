@@ -11,4 +11,16 @@ class Frog
   def go_up
     @y += 1
   end
+
+  def go_down
+    @y -= 1
+  end
+
+  def go_left
+    @x -= 1
+  end
+
+  def go_right
+    @x += 1
+  end
 end

@@ -60,7 +60,7 @@ RSpec.describe Game do
         "==O==\n" +
         "==O==\n" +
         "X=O==\n" +
-        "     "
+        "DEATH"
       expect(game.screen).to eq(expected_screen)
     end
 
@@ -78,7 +78,7 @@ RSpec.describe Game do
           "==O==\n" +
           "=XO==\n" +
           "==O==\n" +
-          "     "
+          "DEATH"
 
         expect(game.screen).to eq(expected_screen)
       end
@@ -91,7 +91,7 @@ RSpec.describe Game do
           "==O==\n" +
           "==OX=\n" +
           "==O==\n" +
-          "     "
+          "DEATH"
 
         expect(game.screen).to eq(expected_screen)
       end
@@ -114,7 +114,7 @@ RSpec.describe Game do
         "==O==\n" +
         "==O==\n" +
         "==O==\n" +
-        "     "
+        " WIN "
       expect(game.screen).to eq(expected_screen)
     end
   end

@@ -102,13 +102,11 @@ RSpec.describe Game do
     let(:game) { Game.new }
 
     xit do
-      initial_screen =
-        ":::::\n" +
-        "==M==\n" +
-        "==O==\n" +
-        "==O==\n" +
-        "     "
-      expect(game.screen).to eq(initial_screen)
+      game.right
+      game.right
+      game.up
+      game.up
+      game.up
       game.up
 
       expected_screen =

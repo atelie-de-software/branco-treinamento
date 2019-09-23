@@ -1,5 +1,3 @@
-require_relative 'world'
-
 class Game
   def initialize
     @frog_x = 1

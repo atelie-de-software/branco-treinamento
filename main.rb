@@ -15,5 +15,7 @@ Dispel::Screen.open do |screen|
     game.left if key == :left
     game.up if key == :up
     game.down if key == :down
+
+    game.tick
   end
 end

@@ -14,13 +14,13 @@ RSpec.describe Game do
       expect(game.screen).to eq(initial_screen)
       game.right
 
-      waited_screen =
+      expected_screen =
         ":::::\n" +
         "==O==\n" +
         "==O==\n" +
         "==O==\n" +
         " M   "
-      expect(game.screen).to eq(waited_screen)
+      expect(game.screen).to eq(expected_screen)
     end
   end
 
@@ -28,29 +28,24 @@ RSpec.describe Game do
     let(:game) { Game.new }
 
     xit do
-      initial_screen =
-        ":::::\n" +
-        "==O==\n" +
-        "==O==\n" +
-        "==O==\n" +
-        "  M  "
-      expect(game.screen).to eq(initial_screen)
       game.right
+      game.right
+      game.up
 
-      waited_screen =
+      expected_screen =
         ":::::\n" +
         "==O==\n" +
         "==O==\n" +
         "==M==\n" +
         "     "
-      expect(game.screen).to eq(waited_screen)
+      expect(game.screen).to eq(expected_screen)
     end
   end
 
   describe "fall into water" do
     let(:game) { Game.new }
 
-    xit do
+    xit 'moving up' do
       initial_screen =
         ":::::\n" +
         "==O==\n" +
@@ -60,13 +55,50 @@ RSpec.describe Game do
       expect(game.screen).to eq(initial_screen)
       game.up
 
-      waited_screen =
+      expected_screen =
         ":::::\n" +
         "==O==\n" +
         "==O==\n" +
         "X=O==\n" +
         "     "
-      expect(game.screen).to eq(waited_screen)
+      expect(game.screen).to eq(expected_screen)
+    end
+
+    context 'when frog on rock' do
+      initial_screen =
+        ":::::\n" +
+        "==O==\n" +
+        "==M==\n" +
+        "==O==\n" +
+        "     "
+
+      xit 'must die when moving left' do
+        expect(game.screen).to eq(initial_screen)
+        game.left
+
+        expected_screen =
+          ":::::\n" +
+          "==O==\n" +
+          "=XO==\n" +
+          "==O==\n" +
+          "     "
+
+        expect(game.screen).to eq(expected_screen)
+      end
+
+      xit 'moving right' do
+        expect(game.screen).to eq(initial_screen)
+        move.right
+
+        expected_screen =
+          ":::::\n" +
+          "==O==\n" +
+          "==OX=\n" +
+          "==O==\n" +
+          "     "
+
+        expect(game.screen).to eq(expected_screen)
+      end
     end
   end
 
@@ -83,13 +115,13 @@ RSpec.describe Game do
       expect(game.screen).to eq(initial_screen)
       game.up
 
-      waited_screen =
+      expected_screen =
         "::M::\n" +
         "==O==\n" +
         "==O==\n" +
         "==O==\n" +
         "     "
-      expect(game.screen).to eq(waited_screen)
+      expect(game.screen).to eq(expected_screen)
     end
   end
 end

@@ -4,7 +4,7 @@ RSpec.describe Game do
   describe "move to right" do
     let(:game) { Game.new }
 
-    xit do
+    it do
       initial_screen =
         ":::::\n" +
         "==O==\n" +
@@ -27,7 +27,7 @@ RSpec.describe Game do
   describe "move to a rock" do
     let(:game) { Game.new }
 
-    xit do
+    it do
       initial_screen =
         ":::::\n" +
         "==O==\n" +

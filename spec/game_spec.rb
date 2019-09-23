@@ -65,12 +65,10 @@ RSpec.describe Game do
     end
 
     context 'when frog on rock' do
-      initial_screen =
-        ":::::\n" +
-        "==O==\n" +
-        "==M==\n" +
-        "==O==\n" +
-        "     "
+      game.right
+      game.right
+      game.up
+      game.up
 
       xit 'must die when moving left' do
         expect(game.screen).to eq(initial_screen)

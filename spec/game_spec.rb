@@ -49,14 +49,14 @@ RSpec.describe Game do
 
   describe "fall into water" do
     let(:game) { Game.new }
-    initial_screen =
-    ":::::\n" +
-    "==O==\n" +
-    "==O==\n" +
-    "==O==\n" +
-    "M    "
 
-    xit 'move to up' do
+    xit do
+      initial_screen =
+        ":::::\n" +
+        "==O==\n" +
+        "==O==\n" +
+        "==O==\n" +
+        "M    "
       expect(game.screen).to eq(initial_screen)
       game.up
 

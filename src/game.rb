@@ -1,18 +1,22 @@
 require_relative 'world'
 
 class Game
-  attr_accessor :state, :world
-
-  def initialize
-    @state = :GAME
-    @world = World.new(20, 10)
+  def sobe
   end
 
-  def update(key)
-    
+  def desce
   end
 
-  def output
-    world.world
+  def esquerda
+  end
+
+  def direita
+  end
+
+  def tela
+    ''
+  end
+
+  def tick
   end
 end

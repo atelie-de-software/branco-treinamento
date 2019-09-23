@@ -9,7 +9,10 @@ class Game
   end
 
   def update(key)
-    
+    frog.right if key == :right
+    frog.left if key == :left
+    frog.up if key == :up
+    frog.down if key == :down
   end
 
   def output

@@ -149,5 +149,20 @@ RSpec.describe Game do
         expect(game.screen).to eq(expected_screen)
       end
     end
+
+    context 'after 20 ticks' do
+      xit 'the rocks should move' do
+        20.times do
+          game.tick
+        end
+        expected_screen =
+          ":::::\n" +
+          "====O\n" +
+          "O====\n" +
+          "====O\n" +
+          "M    "
+        expect(game.screen).to eq(expected_screen)
+      end
+    end
   end
 end

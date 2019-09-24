@@ -35,7 +35,7 @@ RSpec.describe Game do
   describe "move to a rock" do
     let(:game) { Game.new }
 
-    xit do
+    it do
       game.right
       game.right
       game.up
@@ -53,7 +53,7 @@ RSpec.describe Game do
   describe "fall into water" do
     let(:game) { Game.new }
 
-    xit 'moving up' do
+    it 'moving up' do
       initial_screen =
         ":::::\n" +
         "==O==\n" +
@@ -80,7 +80,7 @@ RSpec.describe Game do
         game.up
       end
 
-      xit 'must die when moving left' do
+      it 'must die when moving left' do
         game.left
 
         expected_screen =
@@ -93,7 +93,7 @@ RSpec.describe Game do
         expect(game.screen).to eq(expected_screen)
       end
 
-      xit 'moving right' do
+      it 'moving right' do
         game.right
 
         expected_screen =
@@ -111,7 +111,7 @@ RSpec.describe Game do
   describe "win the game" do
     let(:game) { Game.new }
 
-    xit do
+    it do
       game.right
       game.right
       game.up

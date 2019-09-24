@@ -133,6 +133,8 @@ RSpec.describe Game do
   end
 
   describe 'rock movement' do
+    let(:game) { Game.new }
+
     context 'after 10 ticks' do
       xit 'the rocks should move' do
         10.times do

@@ -184,7 +184,7 @@ RSpec.describe Game do
   describe 'frog is on the rock' do
     let(:game) { Game.new }
 
-    xit 'should moves with a rock' do
+    it 'should moves with a rock' do
       game.right
       game.right
       game.up

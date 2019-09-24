@@ -72,6 +72,8 @@ class Game
     if @ticks.modulo(10) == 0
       @rocks.each do |rock|
         rock[:dir] = -rock[:dir] if rock[:x] + rock[:dir] > 4 || rock[:x] + rock[:dir] < 0
+        
+        @frog_x += rock[:dir] if rock[:x] == @frog_x && rock[:y] == @frog_y
         rock[:x] += rock[:dir]
       end
     end

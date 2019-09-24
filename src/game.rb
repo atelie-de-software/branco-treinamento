@@ -2,7 +2,9 @@ class Game
   def initialize
     @frog_x = 0
     @frog_y = 4
+    @rock1 = { x: 2, y: 1}
     @matrix
+
   end
 
   def up
@@ -28,7 +30,7 @@ class Game
   def empty_matrix
     [
       [':', ':', ':', ':', ':', "\n"],
-      ['=', '=', 'O', '=', '=', "\n"],
+      ['=', '=', '=', '=', '=', "\n"],
       ['=', '=', 'O', '=', '=', "\n"],
       ['=', '=', 'O', '=', '=', "\n"],
       [' ', ' ', ' ', ' ', ' ']
@@ -37,6 +39,7 @@ class Game
 
   def screen
     @matrix = empty_matrix
+    @matrix[@rock1[:y]][@rock1[:x]] = 'O'
     
     if @matrix[@frog_y][@frog_x] == '='
       @matrix[@frog_y][@frog_x] = 'X'
@@ -47,10 +50,12 @@ class Game
     else
       @matrix[@frog_y][@frog_x] = 'M'
     end
+
+
     @matrix.flatten.join('')
   end
 
   def tick
-
+    self
   end
 end

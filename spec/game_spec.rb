@@ -180,4 +180,25 @@ RSpec.describe Game do
       end
     end
   end
+
+  describe 'frog is on the rock' do
+    let(:game) { Game.new }
+
+    xit 'should moves with a rock' do
+      game.right
+      game.right
+      game.up
+      10.times do
+        game.tick
+      end
+
+      expected_screen =
+        ":::::\n" +
+        "===O=\n" +
+        "=O===\n" +
+        "===M=\n" +
+        "     "
+      expect(game.screen).to eq(expected_screen)
+    end
+  end
 end

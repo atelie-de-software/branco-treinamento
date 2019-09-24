@@ -6,6 +6,11 @@ class Game
     @rock1 = { x: 2, y: 1, dir: 1}
     @rock2 = { x: 2, y: 2, dir: -1}
     @rock3 = { x: 2, y: 3, dir: 1}
+    @rocks = [
+      { x: 2, y: 1, dir: 1},
+      { x: 2, y: 2, dir: -1},
+      { x: 2, y: 3, dir: 1}
+    ]
     @matrix
 
   end
@@ -42,9 +47,10 @@ class Game
 
   def screen
     @matrix = empty_matrix
-    @matrix[@rock1[:y]][@rock1[:x]] = 'O'
-    @matrix[@rock2[:y]][@rock2[:x]] = 'O'
-    @matrix[@rock3[:y]][@rock3[:x]] = 'O'
+    
+    @rocks.each do |rock|
+      @matrix[rock[:y]][rock[:x]] = 'O'
+    end
     
     if @matrix[@frog_y][@frog_x] == '='
       @matrix[@frog_y][@frog_x] = 'X'
@@ -64,13 +70,10 @@ class Game
     @ticks += 1
 
     if @ticks.modulo(10) == 0
-      @rock1[:dir] = -@rock1[:dir] if @rock1[:x] + @rock1[:dir] > 4 || @rock1[:x] + @rock1[:dir] < 0
-      @rock2[:dir] = -@rock2[:dir] if @rock2[:x] + @rock2[:dir] > 4 || @rock2[:x] + @rock2[:dir] < 0
-      @rock3[:dir] = -@rock3[:dir] if @rock3[:x] + @rock3[:dir] > 4 || @rock3[:x] + @rock3[:dir] < 0
-
-      @rock1[:x] += @rock1[:dir]
-      @rock2[:x] += @rock2[:dir]
-      @rock3[:x] += @rock3[:dir]
+      @rocks.each do |rock|
+        rock[:dir] = -rock[:dir] if rock[:x] + rock[:dir] > 4 || rock[:x] + rock[:dir] < 0
+        rock[:x] += rock[:dir]
+      end
     end
 
     self

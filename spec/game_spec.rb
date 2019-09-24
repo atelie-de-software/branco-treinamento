@@ -151,7 +151,7 @@ RSpec.describe Game do
     end
 
     context 'after 20 ticks' do
-      xit 'the rocks are beside the borders' do
+      xit 'the rocks should have on the borders' do
         20.times do
           game.tick
         end

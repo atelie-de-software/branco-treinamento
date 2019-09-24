@@ -16,7 +16,7 @@ RSpec.describe Game do
     end
   end
 
-  describe "move to right" do
+  describe "first correct move" do
     let(:game) { Game.new }
 
     it do
@@ -35,7 +35,7 @@ RSpec.describe Game do
   describe "move to a rock" do
     let(:game) { Game.new }
 
-    it do
+    xit do
       game.right
       game.right
       game.up

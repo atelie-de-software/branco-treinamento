@@ -38,11 +38,14 @@ class Game
   def screen
     @matrix = empty_matrix
     
-    if @matrix[@frog_y][@frog_x] != '='
-      @matrix[@frog_y][@frog_x] = 'M'
-    else
+    if @matrix[@frog_y][@frog_x] == '='
       @matrix[@frog_y][@frog_x] = 'X'
       @matrix[4] = ['D', 'E', 'A', 'T', 'H']
+    elsif @matrix[@frog_y][@frog_x] == ':'
+      @matrix[@frog_y][@frog_x] = 'M'
+      @matrix[4] = [' ', 'W', 'I', 'N', ' ']
+    else
+      @matrix[@frog_y][@frog_x] = 'M'
     end
     @matrix.flatten.join('')
   end

@@ -6,12 +6,12 @@ class Game
   end
 
   def up
-    @frog_y += 1  if @frog_y < 4
+    @frog_y -= 1 if @frog_y > 0
     self
   end
-
+  
   def down
-    @frog_y -= 1 if @frog_y > 0
+    @frog_y += 1  if @frog_y < 4
     self
   end
 
@@ -37,7 +37,13 @@ class Game
 
   def screen
     @matrix = empty_matrix
-    @matrix[@frog_y][@frog_x] = 'M'
+    
+    if @matrix[@frog_y][@frog_x] != '='
+      @matrix[@frog_y][@frog_x] = 'M'
+    else
+      @matrix[@frog_y][@frog_x] = 'X'
+      @matrix[4] = ['D', 'E', 'A', 'T', 'H']
+    end
     @matrix.flatten.join('')
   end
 

@@ -136,7 +136,7 @@ RSpec.describe Game do
     let(:game) { Game.new }
 
     context 'after 10 ticks' do
-      xit 'the rocks should move' do
+      it 'the rocks should move' do
         10.times do
           game.tick
         end
@@ -151,7 +151,7 @@ RSpec.describe Game do
     end
 
     context 'after 20 ticks' do
-      xit 'the rocks should have on the borders' do
+      it 'the rocks should have on the borders' do
         20.times do
           game.tick
         end
@@ -166,7 +166,7 @@ RSpec.describe Game do
     end
 
     context 'after 30 ticks' do
-      xit 'the rocks should move back' do
+      it 'the rocks should move back' do
         30.times do
           game.tick
         end

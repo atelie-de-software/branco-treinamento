@@ -3,7 +3,6 @@ require_relative 'src/game'
 
 game = Game.new
 
-
 update do
   system "clear"
 
@@ -14,8 +13,28 @@ update do
     x = 0
     lines.split('').each do |sprite|
       Image.new('water.png', x: x, y: y) if sprite == '='
-      Image.new('leaf.png', x: x, y: y) if sprite == 'O'
-      Image.new('frog.png', x: x, y: y) if sprite == 'M'
+
+      if sprite == 'M'
+        Image.new('start.png', x: x, y: y)
+        Image.new('frog.png', x: x, y: y)
+      end
+
+      if sprite == 'O'
+        Image.new('water.png', x: x, y: y)
+        Image.new('leaf.png', x: x, y: y)
+      end
+
+      if sprite == 'B'
+        Image.new('water.png', x: x, y: y)
+        Image.new('leaf.png', x: x, y: y)
+        Image.new('frog.png', x: x, y: y)
+      end
+
+      if sprite == '#'
+        Image.new('finish.png', x: x, y: y)
+        Image.new('frog.png', x: x, y: y)
+      end
+
       Image.new('start.png', x: x, y: y) if sprite == ' '
       Image.new('finish.png', x: x, y: y) if sprite == ':'
       Image.new('dead.png', x: x, y: y) if sprite == 'X'

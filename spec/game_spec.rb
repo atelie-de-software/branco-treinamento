@@ -205,7 +205,7 @@ RSpec.describe Game do
   describe 'second level' do
     let(:game) { Game.new }
 
-    xit 'should moves with a rock' do
+    xit 'renders new level with moving cars' do
       game.right
       game.right
       game.up
@@ -236,6 +236,43 @@ RSpec.describe Game do
         game.tick
       end
 
+      expect(game.screen).to eq(expected_screen)
+    end
+
+    xit 'after a while cars disapear from one side and apear at the other' do
+      game.right
+      game.right
+      game.up
+      game.up
+      game.up
+      game.up
+      
+      5.times do
+        game.tick
+      end
+
+      (8*3).times do
+        game.tick
+      end
+
+      expected_screen =
+        ":::::\n" +
+        "Q____\n" +
+        "____C\n" +
+        "Q____\n" +
+        "  M  "
+      expect(game.screen).to eq(expected_screen)
+
+      (8).times do
+        game.tick
+      end
+
+      expected_screen =
+        ":::::\n" +
+        "____Q\n" +
+        "C____\n" +
+        "____Q\n" +
+        "  M  "
       expect(game.screen).to eq(expected_screen)
     end
   end

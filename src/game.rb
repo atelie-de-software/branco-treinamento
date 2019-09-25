@@ -1,4 +1,6 @@
 class Game
+  DEFAULT_TICK_SPEED = 10
+
   def initialize
     @ticks = 0
     @frog_x = 0
@@ -8,8 +10,6 @@ class Game
       { x: 2, y: 2, dir: -1},
       { x: 2, y: 3, dir: 1}
     ]
-    @matrix
-
   end
 
   def up
@@ -45,8 +45,19 @@ class Game
   def screen
     @matrix = empty_matrix_first_map
 
-    game_engine_first_map
+    game_engine
+    tile_overwrite
 
+    @matrix.flatten.join('')
+  end
+
+  def game_engine
+    @rocks.each do |rock|
+      @matrix[rock[:y]][rock[:x]] = 'O'
+    end
+  end
+
+  def tile_overwrite
     if @matrix[@frog_y][@frog_x] == '='
       @matrix[@frog_y][@frog_x] = 'X'
       @matrix[4] = ['D', 'E', 'A', 'T', 'H']
@@ -58,19 +69,12 @@ class Game
     else
       @matrix[@frog_y][@frog_x] = 'M'
     end
-    @matrix.flatten.join('')
-  end
-
-  def game_engine_first_map
-    @rocks.each do |rock|
-      @matrix[rock[:y]][rock[:x]] = 'O'
-    end
   end
 
   def tick
     @ticks += 1
 
-    if @ticks.modulo(10) == 0
+    if @ticks.modulo(DEFAULT_TICK_SPEED) == 0
       @rocks.each do |rock|
         rock[:dir] = -rock[:dir] if rock[:x] + rock[:dir] > 4 || rock[:x] + rock[:dir] < 0
 

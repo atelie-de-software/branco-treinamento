@@ -33,9 +33,7 @@ RSpec.describe Game do
 
   describe 'frog moves to a plant' do
     subject do
-      game.right
-      game.right
-      game.up
+      game.right.right.up
     end
 
     it 'responds correctly' do
@@ -67,10 +65,7 @@ RSpec.describe Game do
 
     context 'from a plant' do
       subject(:moves_to_plant) do
-        game.right
-        game.right
-        game.up
-        game.up
+        game.right.right.up.up
       end
 
       it 'dies moving left' do
@@ -152,9 +147,7 @@ RSpec.describe Game do
 
   describe 'frog is on the plant' do
     it 'moves with a plant' do
-      game.right
-      game.right
-      game.up
+      game.right.right.up
       10.times do
         game.tick
       end
@@ -169,169 +162,147 @@ RSpec.describe Game do
     end
   end
 
-  describe 'victory' do
-    subject(:wins_the_game) do
-      game.right
-      game.right
-      game.up
-      game.up
-      game.up
-      game.up
+  describe 'wins first level' do
+    def wins_first_level(game)
+      game.right.right.up.up.up.up
     end
-
-    it 'shows victory screen' do
-      wins_the_game
-      expected_screen =
-        "::W::\n" +
-        "==O==\n" +
-        "==O==\n" +
-        "==O==\n" +
-        " WIN "
-      expect(game.screen).to eq(expected_screen)
+    
+    
+    context 'before 5 ticks' do
+      it 'shows victory screen' do
+        wins_first_level(game)
+        expected_screen =
+          "::W::\n" +
+          "==O==\n" +
+          "==O==\n" +
+          "==O==\n" +
+          " WIN "
+        expect(game.screen).to eq(expected_screen)
+      end
     end
-  end
+    
+    context 'after 5 ticks' do
+      xit 'renders second level with moving cars' do
+        wins_first_level(game)
+        
+        5.times do
+          game.tick
+        end
 
-  describe 'second level' do
-    xit 'renders new level with moving cars' do
-      game.right
-      game.right
-      game.up
-      game.up
-      game.up
-      game.up
-      
-      5.times do
-        game.tick
+        expected_screen =
+          ":::::\n" +
+          "___Q_\n" +
+          "_C___\n" +
+          "___Q_\n" +
+          "  M  "
+        expect(game.screen).to eq(expected_screen)
+
+        expected_screen =
+          ":::::\n" +
+          "__Q__\n" +
+          "__C__\n" +
+          "__Q__\n" +
+          "  E  "
+
+        8.times do
+          game.tick
+        end
+
+        expect(game.screen).to eq(expected_screen)
       end
 
-      expected_screen =
-        ":::::\n" +
-        "___Q_\n" +
-        "_C___\n" +
-        "___Q_\n" +
-        "  M  "
-      expect(game.screen).to eq(expected_screen)
+      xit 'after a while cars disapear from one side and apear at the other' do
+        wins_first_level(game)
+        
+        5.times do
+          game.tick
+        end
 
-      expected_screen =
-        ":::::\n" +
-        "__Q__\n" +
-        "__C__\n" +
-        "__Q__\n" +
-        "  E  "
+        (8*3).times do
+          game.tick
+        end
 
-      8.times do
-        game.tick
+        expected_screen =
+          ":::::\n" +
+          "Q____\n" +
+          "____C\n" +
+          "Q____\n" +
+          "  E  "
+        expect(game.screen).to eq(expected_screen)
+
+        (8).times do
+          game.tick
+        end
+
+        expected_screen =
+          ":::::\n" +
+          "____Q\n" +
+          "C____\n" +
+          "____Q\n" +
+          "  E  "
+        expect(game.screen).to eq(expected_screen)
       end
 
-      expect(game.screen).to eq(expected_screen)
-    end
+      xit 'frog dies if hit by a car coming from the right' do
+        wins_first_level(game)
+        
+        5.times do
+          game.tick
+        end
 
-    xit 'after a while cars disapear from one side and apear at the other' do
-      game.right
-      game.right
-      game.up
-      game.up
-      game.up
-      game.up
-      
-      5.times do
-        game.tick
+        game.up
+
+        expected_screen =
+          ":::::\n" +
+          "___Q_\n" +
+          "_C___\n" +
+          "__SQ_\n" +
+          "     "
+        expect(game.screen).to eq(expected_screen)
+
+        8.times do
+          game.tick
+        end
+
+        expected_screen =
+          ":::::\n" +
+          "__Q__\n" +
+          "__C__\n" +
+          "__X__\n" +
+          "DEATH"
+        expect(game.screen).to eq(expected_screen)
       end
 
-      (8*3).times do
-        game.tick
+      xit 'frog dies if hit by a car coming from the left' do
+        wins_first_level(game)
+        
+        5.times do
+          game.tick
+        end
+
+        game.up
+        game.up
+
+        expected_screen =
+          ":::::\n" +
+          "___Q_\n" +
+          "_CS__\n" +
+          "___Q_\n" +
+          "     "
+        expect(game.screen).to eq(expected_screen)
+
+        8.times do
+          game.tick
+        end
+
+        expected_screen =
+          ":::::\n" +
+          "__Q__\n" +
+          "__X__\n" +
+          "__Q__\n" +
+          "DEATH"
+        expect(game.screen).to eq(expected_screen)
       end
-
-      expected_screen =
-        ":::::\n" +
-        "Q____\n" +
-        "____C\n" +
-        "Q____\n" +
-        "  E  "
-      expect(game.screen).to eq(expected_screen)
-
-      (8).times do
-        game.tick
-      end
-
-      expected_screen =
-        ":::::\n" +
-        "____Q\n" +
-        "C____\n" +
-        "____Q\n" +
-        "  E  "
-      expect(game.screen).to eq(expected_screen)
-    end
-
-    xit 'frog dies if hit by a car coming from the right' do
-      game.right
-      game.right
-      game.up
-      game.up
-      game.up
-      game.up
-      
-      5.times do
-        game.tick
-      end
-
-      game.up
-
-      expected_screen =
-        ":::::\n" +
-        "___Q_\n" +
-        "_C___\n" +
-        "__SQ_\n" +
-        "     "
-      expect(game.screen).to eq(expected_screen)
-
-      8.times do
-        game.tick
-      end
-
-      expected_screen =
-        ":::::\n" +
-        "__Q__\n" +
-        "__C__\n" +
-        "__X__\n" +
-        "DEATH"
-      expect(game.screen).to eq(expected_screen)
-    end
-
-    xit 'frog dies if hit by a car coming from the left' do
-      game.right
-      game.right
-      game.up
-      game.up
-      game.up
-      game.up
-      
-      5.times do
-        game.tick
-      end
-
-      game.up
-      game.up
-
-      expected_screen =
-        ":::::\n" +
-        "___Q_\n" +
-        "_CS__\n" +
-        "___Q_\n" +
-        "     "
-      expect(game.screen).to eq(expected_screen)
-
-      8.times do
-        game.tick
-      end
-
-      expected_screen =
-        ":::::\n" +
-        "__Q__\n" +
-        "__X__\n" +
-        "__Q__\n" +
-        "DEATH"
-      expect(game.screen).to eq(expected_screen)
     end
   end
 end

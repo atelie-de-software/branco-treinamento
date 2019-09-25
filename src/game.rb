@@ -19,7 +19,7 @@ class Game
     @frog_y -= 1 if @frog_y > 0
     self
   end
-  
+
   def down
     @frog_y += 1  if @frog_y < 4
     self
@@ -35,7 +35,7 @@ class Game
     self
   end
 
-  def empty_matrix
+  def empty_matrix_first_map
     [
       [':', ':', ':', ':', ':', "\n"],
       ['=', '=', '=', '=', '=', "\n"],
@@ -46,12 +46,12 @@ class Game
   end
 
   def screen
-    @matrix = empty_matrix
-    
+    @matrix = empty_matrix_first_map
+
     @rocks.each do |rock|
       @matrix[rock[:y]][rock[:x]] = 'O'
     end
-    
+
     if @matrix[@frog_y][@frog_x] == '='
       @matrix[@frog_y][@frog_x] = 'X'
       @matrix[4] = ['D', 'E', 'A', 'T', 'H']
@@ -72,7 +72,7 @@ class Game
     if @ticks.modulo(10) == 0
       @rocks.each do |rock|
         rock[:dir] = -rock[:dir] if rock[:x] + rock[:dir] > 4 || rock[:x] + rock[:dir] < 0
-        
+
         @frog_x += rock[:dir] if rock[:x] == @frog_x && rock[:y] == @frog_y
         rock[:x] += rock[:dir]
       end

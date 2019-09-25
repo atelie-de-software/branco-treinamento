@@ -45,6 +45,16 @@ class Game
     ]
   end
 
+  def empty_matrix_second_map
+    [
+      [':', ':', ':', ':', ':', "\n"],
+      ['_', '_', '_', 'Q', '_', "\n"],
+      ['_', 'C', '_', '_', '_', "\n"],
+      ['_', '_', '_', 'Q', '_', "\n"],
+      [' ', ' ', ' ', ' ', ' ']
+    ]
+  end
+
   def screen
     @matrix = empty_matrix_first_map
 

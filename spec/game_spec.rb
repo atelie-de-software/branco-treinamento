@@ -1,11 +1,10 @@
 require './src/game'
 
 RSpec.describe Game do
+  let!(:game) { Game.new }
 
   describe 'initial screen' do
-    let(:game) { Game.new }
-
-    it do
+    it 'is correct' do
       expected_screen =
         ":::::\n" +
         "==O==\n" +
@@ -16,11 +15,11 @@ RSpec.describe Game do
     end
   end
 
-  describe 'first correct move' do
-    let(:game) { Game.new }
+  describe 'frog moves to the right' do
+    subject { game.right }
 
-    it do
-      game.right
+    it 'responds correctly' do
+      subject
 
       expected_screen =
         ":::::\n" +
@@ -32,14 +31,15 @@ RSpec.describe Game do
     end
   end
 
-  describe 'move to a rock' do
-    let(:game) { Game.new }
-
-    it do
+  describe 'frog moves to a plant' do
+    subject do
       game.right
       game.right
       game.up
+    end
 
+    it 'responds correctly' do
+      subject
       expected_screen =
         ":::::\n" +
         "==O==\n" +
@@ -50,19 +50,9 @@ RSpec.describe Game do
     end
   end
 
-  describe 'fall into water' do
-    let(:game) { Game.new }
-
+  describe 'frog falling into water' do
     context 'from beginning of the game' do
-      it 'moving up' do
-        initial_screen =
-        ":::::\n" +
-        "==O==\n" +
-        "==O==\n" +
-        "==O==\n" +
-        "M    "
-
-        expect(game.screen).to eq(initial_screen)
+      it 'dies moving up' do
         game.up
 
         expected_screen =
@@ -75,15 +65,16 @@ RSpec.describe Game do
       end
     end
 
-    context 'when frog on rock' do
-      before(:each) do
+    context 'from a plant' do
+      subject(:moves_to_plant) do
         game.right
         game.right
         game.up
         game.up
       end
 
-      it 'die moving left' do
+      it 'dies moving left' do
+        moves_to_plant
         game.left
 
         expected_screen =
@@ -97,6 +88,7 @@ RSpec.describe Game do
       end
 
       it 'die moving right' do
+        moves_to_plant
         game.right
 
         expected_screen =
@@ -111,32 +103,9 @@ RSpec.describe Game do
     end
   end
 
-  describe 'win the game' do
-    let(:game) { Game.new }
-
-    it do
-      game.right
-      game.right
-      game.up
-      game.up
-      game.up
-      game.up
-
-      expected_screen =
-        "::W::\n" +
-        "==O==\n" +
-        "==O==\n" +
-        "==O==\n" +
-        " WIN "
-      expect(game.screen).to eq(expected_screen)
-    end
-  end
-
-  describe 'rock movement' do
-    let(:game) { Game.new }
-
+  describe 'plant movement' do
     context 'after 10 ticks' do
-      it 'the rocks should move' do
+      it 'the plants should move' do
         10.times do
           game.tick
         end
@@ -151,7 +120,7 @@ RSpec.describe Game do
     end
 
     context 'after 20 ticks' do
-      it 'the rocks should have on the borders' do
+      it 'the plants should have on the borders' do
         20.times do
           game.tick
         end
@@ -166,7 +135,7 @@ RSpec.describe Game do
     end
 
     context 'after 30 ticks' do
-      it 'the rocks should move back' do
+      it 'the plants should move back' do
         30.times do
           game.tick
         end
@@ -181,10 +150,8 @@ RSpec.describe Game do
     end
   end
 
-  describe 'frog is on the rock' do
-    let(:game) { Game.new }
-
-    it 'moves with a rock' do
+  describe 'frog is on the plant' do
+    it 'moves with a plant' do
       game.right
       game.right
       game.up
@@ -202,9 +169,29 @@ RSpec.describe Game do
     end
   end
 
-  describe 'second level' do
-    let(:game) { Game.new }
+  describe 'victory' do
+    subject(:wins_the_game) do
+      game.right
+      game.right
+      game.up
+      game.up
+      game.up
+      game.up
+    end
 
+    it 'shows victory screen' do
+      wins_the_game
+      expected_screen =
+        "::W::\n" +
+        "==O==\n" +
+        "==O==\n" +
+        "==O==\n" +
+        " WIN "
+      expect(game.screen).to eq(expected_screen)
+    end
+  end
+
+  describe 'second level' do
     xit 'renders new level with moving cars' do
       game.right
       game.right

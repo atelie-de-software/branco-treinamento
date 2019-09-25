@@ -3,9 +3,6 @@ class Game
     @ticks = 0
     @frog_x = 0
     @frog_y = 4
-    @rock1 = { x: 2, y: 1, dir: 1}
-    @rock2 = { x: 2, y: 2, dir: -1}
-    @rock3 = { x: 2, y: 3, dir: 1}
     @rocks = [
       { x: 2, y: 1, dir: 1},
       { x: 2, y: 2, dir: -1},

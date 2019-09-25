@@ -201,4 +201,42 @@ RSpec.describe Game do
       expect(game.screen).to eq(expected_screen)
     end
   end
+
+  describe 'second level' do
+    let(:game) { Game.new }
+
+    xit 'should moves with a rock' do
+      game.right
+      game.right
+      game.up
+      game.up
+      game.up
+      game.up
+      
+      5.times do
+        game.tick
+      end
+
+      expected_screen =
+        ":::::\n" +
+        "___Q_\n" +
+        "_C___\n" +
+        "___Q_\n" +
+        "  M  "
+      expect(game.screen).to eq(expected_screen)
+
+      expected_screen =
+        ":::::\n" +
+        "__Q__\n" +
+        "__C__\n" +
+        "__Q__\n" +
+        "  M  "
+
+      8.times do
+        game.tick
+      end
+
+      expect(game.screen).to eq(expected_screen)
+    end
+  end
 end

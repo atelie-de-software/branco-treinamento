@@ -35,7 +35,7 @@ RSpec.describe Game do
   describe 'move to a rock' do
     let(:game) { Game.new }
 
-    it do
+    xit do
       game.right
       game.right
       game.up
@@ -44,7 +44,7 @@ RSpec.describe Game do
         ":::::\n" +
         "==O==\n" +
         "==O==\n" +
-        "==M==\n" +
+        "==B==\n" +
         "     "
       expect(game.screen).to eq(expected_screen)
     end
@@ -114,7 +114,7 @@ RSpec.describe Game do
   describe 'win the game' do
     let(:game) { Game.new }
 
-    it do
+    xit do
       game.right
       game.right
       game.up
@@ -123,7 +123,7 @@ RSpec.describe Game do
       game.up
 
       expected_screen =
-        "::M::\n" +
+        "::W::\n" +
         "==O==\n" +
         "==O==\n" +
         "==O==\n" +
@@ -184,7 +184,7 @@ RSpec.describe Game do
   describe 'frog is on the rock' do
     let(:game) { Game.new }
 
-    it 'should moves with a rock' do
+    xit 'moves with a rock' do
       game.right
       game.right
       game.up
@@ -196,7 +196,7 @@ RSpec.describe Game do
         ":::::\n" +
         "===O=\n" +
         "=O===\n" +
-        "===M=\n" +
+        "===B=\n" +
         "     "
       expect(game.screen).to eq(expected_screen)
     end
@@ -230,7 +230,7 @@ RSpec.describe Game do
         "__Q__\n" +
         "__C__\n" +
         "__Q__\n" +
-        "  M  "
+        "  E  "
 
       8.times do
         game.tick
@@ -260,7 +260,7 @@ RSpec.describe Game do
         "Q____\n" +
         "____C\n" +
         "Q____\n" +
-        "  M  "
+        "  E  "
       expect(game.screen).to eq(expected_screen)
 
       (8).times do
@@ -272,7 +272,7 @@ RSpec.describe Game do
         "____Q\n" +
         "C____\n" +
         "____Q\n" +
-        "  M  "
+        "  E  "
       expect(game.screen).to eq(expected_screen)
     end
 
@@ -294,7 +294,7 @@ RSpec.describe Game do
         ":::::\n" +
         "___Q_\n" +
         "_C___\n" +
-        "__MQ_\n" +
+        "__SQ_\n" +
         "     "
       expect(game.screen).to eq(expected_screen)
 
@@ -329,7 +329,7 @@ RSpec.describe Game do
       expected_screen =
         ":::::\n" +
         "___Q_\n" +
-        "_CM__\n" +
+        "_CS__\n" +
         "___Q_\n" +
         "     "
       expect(game.screen).to eq(expected_screen)

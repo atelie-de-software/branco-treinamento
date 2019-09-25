@@ -35,7 +35,7 @@ RSpec.describe Game do
   describe 'move to a rock' do
     let(:game) { Game.new }
 
-    xit do
+    it do
       game.right
       game.right
       game.up
@@ -114,7 +114,7 @@ RSpec.describe Game do
   describe 'win the game' do
     let(:game) { Game.new }
 
-    xit do
+    it do
       game.right
       game.right
       game.up
@@ -184,7 +184,7 @@ RSpec.describe Game do
   describe 'frog is on the rock' do
     let(:game) { Game.new }
 
-    xit 'moves with a rock' do
+    it 'moves with a rock' do
       game.right
       game.right
       game.up

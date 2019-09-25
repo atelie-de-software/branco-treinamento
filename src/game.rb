@@ -1,5 +1,5 @@
 class Game
-  DEFAULT_TICK_SPEED = 10
+  DEFAULT_TICK_SPEED = 10.freeze
 
   def initialize
     @ticks = 0
@@ -58,13 +58,14 @@ class Game
   end
 
   def tile_overwrite
-    if @matrix[@frog_y][@frog_x] == '='
+    case @matrix[@frog_y][@frog_x]
+    when '='
       @matrix[@frog_y][@frog_x] = 'X'
       @matrix[4] = ['D', 'E', 'A', 'T', 'H']
-    elsif @matrix[@frog_y][@frog_x] == ':'
+    when ':'
       @matrix[@frog_y][@frog_x] = 'W'
       @matrix[4] = [' ', 'W', 'I', 'N', ' ']
-    elsif @matrix[@frog_y][@frog_x] == 'O'
+    when 'O'
       @matrix[@frog_y][@frog_x] = 'B'
     else
       @matrix[@frog_y][@frog_x] = 'M'

@@ -17,26 +17,26 @@ update do
     lines.split('').each do |sprite|
       case sprite
       when '='
-        Image.new('water.png', x: coord_x, y: coord_y)
+        Image.new('assets/images/water.png', x: coord_x, y: coord_y)
       when ' '
-        Image.new('start.png', x: coord_x, y: coord_y)
+        Image.new('assets/images/start.png', x: coord_x, y: coord_y)
       when ':'
-        Image.new('finish.png', x: coord_x, y: coord_y)
+        Image.new('assets/images/finish.png', x: coord_x, y: coord_y)
       when 'X'
-        Image.new('dead.png', x: coord_x, y: coord_y)
+        Image.new('assets/images/dead.png', x: coord_x, y: coord_y)
       when 'M'
-        Image.new('start.png', x: coord_x, y: coord_y)
-        Image.new('frog.png', x: coord_x, y: coord_y)
+        Image.new('assets/images/start.png', x: coord_x, y: coord_y)
+        Image.new('assets/images/frog.png', x: coord_x, y: coord_y)
       when 'O'
-        Image.new('water.png', x: coord_x, y: coord_y)
-        Image.new('leaf.png', x: coord_x, y: coord_y)
+        Image.new('assets/images/water.png', x: coord_x, y: coord_y)
+        Image.new('assets/images/leaf.png', x: coord_x, y: coord_y)
       when 'B'
-        Image.new('water.png', x: coord_x, y: coord_y)
-        Image.new('leaf.png', x: coord_x, y: coord_y)
-        Image.new('frog.png', x: coord_x, y: coord_y)
+        Image.new('assets/images/water.png', x: coord_x, y: coord_y)
+        Image.new('assets/images/leaf.png', x: coord_x, y: coord_y)
+        Image.new('assets/images/frog.png', x: coord_x, y: coord_y)
       when '#'
-        Image.new('finish.png', x: coord_x, y: coord_y)
-        Image.new('frog.png', x: coord_x, y: coord_y)
+        Image.new('assets/images/finish.png', x: coord_x, y: coord_y)
+        Image.new('assets/images/frog.png', x: coord_x, y: coord_y)
       end
 
       coord_x += SPRITE_WIDTH

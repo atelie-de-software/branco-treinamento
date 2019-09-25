@@ -12,25 +12,16 @@ class Game
     ]
   end
 
-  def up
-    @frog_y -= 1 if @frog_y > 0
+  def move(dx: 0, dy: 0)
+    @frog_y = [[0, @frog_y + dy].max, 4].min
+    @frog_x = [[0, @frog_x + dx].max, 4].min
     self
   end
 
-  def down
-    @frog_y += 1  if @frog_y < 4
-    self
-  end
-
-  def left
-    @frog_x -= 1 if @frog_x > 0
-    self
-  end
-
-  def right
-    @frog_x += 1 if @frog_x < 4
-    self
-  end
+  def up()    move(dy: -1) end
+  def down()  move(dy:  1) end
+  def left()  move(dx: -1) end
+  def right() move(dx:  1) end
 
   def empty_matrix_first_map
     [

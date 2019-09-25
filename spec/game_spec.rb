@@ -275,5 +275,76 @@ RSpec.describe Game do
         "  M  "
       expect(game.screen).to eq(expected_screen)
     end
+
+    xit 'frog dies if hit by a car coming from the right' do
+      game.right
+      game.right
+      game.up
+      game.up
+      game.up
+      game.up
+      
+      5.times do
+        game.tick
+      end
+
+      game.up
+
+      expected_screen =
+        ":::::\n" +
+        "___Q_\n" +
+        "_C___\n" +
+        "__MQ_\n" +
+        "     "
+      expect(game.screen).to eq(expected_screen)
+
+      8.times do
+        game.tick
+      end
+
+      expected_screen =
+        ":::::\n" +
+        "__Q__\n" +
+        "__C__\n" +
+        "__X__\n" +
+        "DEATH"
+      expect(game.screen).to eq(expected_screen)
+    end
+
+    xit 'frog dies if hit by a car coming from the left' do
+      game.right
+      game.right
+      game.up
+      game.up
+      game.up
+      game.up
+      
+      5.times do
+        game.tick
+      end
+
+      game.up
+      game.up
+
+      expected_screen =
+        ":::::\n" +
+        "___Q_\n" +
+        "_CM__\n" +
+        "___Q_\n" +
+        "     "
+      expect(game.screen).to eq(expected_screen)
+
+      8.times do
+        game.tick
+      end
+
+      expected_screen =
+        ":::::\n" +
+        "__Q__\n" +
+        "__X__\n" +
+        "__Q__\n" +
+        "DEATH"
+      expect(game.screen).to eq(expected_screen)
+    end
   end
 end

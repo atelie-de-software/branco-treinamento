@@ -1,5 +1,6 @@
 class Game
   def initialize
+    @level = 1
     @ticks = 0
     @frog_x = 0
     @frog_y = 4
@@ -58,6 +59,13 @@ class Game
   def screen
     @matrix = empty_matrix_first_map
 
+    game_engine_first_map if @level == 1
+    # game_engine_first_map if level == 1
+
+    @matrix.flatten.join('')
+  end
+
+  def game_engine_first_map
     @rocks.each do |rock|
       @matrix[rock[:y]][rock[:x]] = 'O'
     end
@@ -68,12 +76,10 @@ class Game
     elsif @matrix[@frog_y][@frog_x] == ':'
       @matrix[@frog_y][@frog_x] = 'M'
       @matrix[4] = [' ', 'W', 'I', 'N', ' ']
+      @level = 2
     else
       @matrix[@frog_y][@frog_x] = 'M'
     end
-
-
-    @matrix.flatten.join('')
   end
 
   def tick

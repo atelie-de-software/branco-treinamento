@@ -1,6 +1,5 @@
 class Game
   def initialize
-    @level = 1
     @ticks = 0
     @frog_x = 0
     @frog_y = 4
@@ -46,22 +45,10 @@ class Game
     ]
   end
 
-  def empty_matrix_second_map
-    [
-      [':', ':', ':', ':', ':', "\n"],
-      ['_', '_', '_', 'Q', '_', "\n"],
-      ['_', 'C', '_', '_', '_', "\n"],
-      ['_', '_', '_', 'Q', '_', "\n"],
-      [' ', ' ', ' ', ' ', ' ']
-    ]
-  end
-
   def screen
-    @matrix = @level == 1 ? empty_matrix_first_map : empty_matrix_second_map
+    @matrix = empty_matrix_first_map
 
-    if @level == 1
-      game_engine_first_map
-    end
+    game_engine_first_map
 
     if @matrix[@frog_y][@frog_x] == '='
       @matrix[@frog_y][@frog_x] = 'X'

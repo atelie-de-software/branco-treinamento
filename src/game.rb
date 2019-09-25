@@ -1,5 +1,5 @@
 class Game
-  DEFAULT_TICK_SPEED = 10
+  DEFAULT_TICK_SPEED = 10.freeze
 
   def initialize
     @ticks = 0

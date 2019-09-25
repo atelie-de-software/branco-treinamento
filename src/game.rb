@@ -67,8 +67,10 @@ class Game
       @matrix[@frog_y][@frog_x] = 'X'
       @matrix[4] = ['D', 'E', 'A', 'T', 'H']
     elsif @matrix[@frog_y][@frog_x] == ':'
-      @matrix[@frog_y][@frog_x] = 'M'
+      @matrix[@frog_y][@frog_x] = 'W'
       @matrix[4] = [' ', 'W', 'I', 'N', ' ']
+    elsif @matrix[@frog_y][@frog_x] == 'O'
+      @matrix[@frog_y][@frog_x] = 'B'
     else
       @matrix[@frog_y][@frog_x] = 'M'
     end

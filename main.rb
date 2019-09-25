@@ -1,6 +1,9 @@
 require 'ruby2d'
 require_relative 'src/game'
 
+SPRITE_WIDTH = 62.freeze
+SPRITE_HEIGHT = 62.freeze
+
 game = Game.new
 
 update do
@@ -36,9 +39,9 @@ update do
         Image.new('frog.png', x: coord_x, y: coord_y)
       end
 
-      coord_x += 62
+      coord_x += SPRITE_WIDTH
     end
-    coord_y += 62
+    coord_y += SPRITE_HEIGHT
   end
   sleep 0.2
   game.tick

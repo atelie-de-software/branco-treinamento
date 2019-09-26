@@ -54,7 +54,7 @@ class Game
       @matrix[@frog_y][@frog_x] = 'X'
       @matrix[4] = ['D', 'E', 'A', 'T', 'H']
     when ':'
-      @matrix[@frog_y][@frog_x] = 'W'
+      @matrix[@frog_y][@frog_x] = '#'
       @matrix[4] = [' ', 'W', 'I', 'N', ' ']
     when 'O'
       @matrix[@frog_y][@frog_x] = 'B'

@@ -276,12 +276,25 @@ RSpec.describe Game do
           game.tick
         end
 
-        game.up.up.up.up
+        game.up
+        game.up
+        game.up
+        game.up
 
         screen '::#::',
                '___Q_',
                '_C___',
                '___Q_',
+               ' WIN '
+
+        8.times do
+          game.tick
+        end
+
+        screen '::#::',
+               '__Q__',
+               '__C__',
+               '__Q__',
                ' WIN '
       end
     end

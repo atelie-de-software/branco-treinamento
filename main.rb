@@ -16,6 +16,7 @@ SPRITES = {
   '=': ['assets/images/water.png'],
   ' ': ['assets/images/start.png'],
   ':': ['assets/images/finish.png'],
+  '7': ['assets/images/start.png'],
   'X': ['assets/images/water.png', 'assets/images/dead.png'],
   'M': ['assets/images/start.png', 'assets/images/frog.png'],
   'O': ['assets/images/water.png', 'assets/images/leaf.png'],
@@ -28,6 +29,9 @@ background.loop = true
 background.volume = 30
 background.play
 
+frog_jump = Sound.new('assets/sounds/FrogJump.mp3')
+splash = Sound.new('assets/sounds/Splash.mp3')
+barulho_agua = 0
 game = Game.new
 
 update do
@@ -38,9 +42,15 @@ update do
   puts game_screen
   game_screen.split("\n").each_with_index do |lines, index_y|
     lines.split('').each_with_index do |sprite, index_x|
-      render_sprite(sprite, index_x, index_y)      
+      render_sprite(sprite, index_x, index_y)
     end
   end
+
+  if game_screen.count('X').positive? && barulho_agua == 0
+    splash.play
+    barulho_agua += 1
+  end
+
   sleep 0.2
   game.tick
 end
@@ -50,6 +60,8 @@ on :key_down do |event|
   game.left if event.key == 'left'
   game.up if event.key == 'up'
   game.down if event.key == 'down'
+
+  frog_jump.play
 end
 
 def render_sprite sprite_code, x_index, y_index

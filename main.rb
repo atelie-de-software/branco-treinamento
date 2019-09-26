@@ -26,6 +26,7 @@ SPRITES = {
 game = Game.new
 
 update do
+  clear
   system 'clear'
 
   game_screen = game.screen

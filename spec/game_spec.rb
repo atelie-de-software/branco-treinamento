@@ -188,7 +188,7 @@ RSpec.describe Game do
                '  7  '
       end
 
-      xit 'after a while cars disapear from one side and apear at the other' do
+      it 'after a while cars disapear from one side and apear at the other' do
         wins_first_level(game)
 
         5.times do

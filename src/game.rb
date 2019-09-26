@@ -110,8 +110,9 @@ class Game
 
     if @ticks.modulo(8).zero? && @level > 1
       @cars.each do |car|
-        # @frog_x += car[:dir] if car[:x] == @frog_x && car[:y] == @frog_y
         car[:x] += car[:dir]
+        car[:x] = 4 if car[:x] == -1
+        car[:x] = 0 if car[:x] == 5
       end
     end
 

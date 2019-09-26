@@ -23,6 +23,11 @@ SPRITES = {
   '#': ['assets/images/finish.png', 'assets/images/frog.png']
 }
 
+background = Music.new('assets/sounds/TheRiver.mp3')
+background.loop = true
+background.volume = 30
+background.play
+
 game = Game.new
 
 update do

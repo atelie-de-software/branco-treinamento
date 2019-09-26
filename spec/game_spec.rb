@@ -175,7 +175,7 @@ RSpec.describe Game do
                '___Q_',
                '_C___',
                '___Q_',
-               '  E  '
+               '  7  '
 
         8.times do
           game.tick
@@ -185,7 +185,7 @@ RSpec.describe Game do
                '__Q__',
                '__C__',
                '__Q__',
-               '  E  '
+               '  7  '
       end
 
       xit 'after a while cars disapear from one side and apear at the other' do
@@ -203,7 +203,7 @@ RSpec.describe Game do
                'Q____',
                '____C',
                'Q____',
-               '  E  '
+               '  7  '
 
         8.times do
           game.tick
@@ -213,7 +213,7 @@ RSpec.describe Game do
                '____Q',
                'C____',
                '____Q',
-               '  E  '
+               '  7  '
       end
 
       xit 'frog dies if hit by a car coming from the right' do

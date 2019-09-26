@@ -32,7 +32,7 @@ update do
   puts game_screen
   game_screen.split("\n").each_with_index do |lines, index_y|
     lines.split('').each_with_index do |sprite, index_x|
-      renderiza_sprite(sprite, index_x, index_y)      
+      render_sprite(sprite, index_x, index_y)      
     end
   end
   sleep 0.2
@@ -46,14 +46,13 @@ on :key_down do |event|
   game.down if event.key == 'down'
 end
 
-def renderiza_sprite codigo_sprite, x_index, y_index
-  p codigo_sprite.to_sym
-  caminhos_sprites = SPRITES[codigo_sprite.to_sym]
-  x_posicao = (x_index * SPRITE_WIDTH)
-  y_posicao = (y_index * SPRITE_HEIGHT)
+def render_sprite sprite_code, x_index, y_index
+  sprite_paths = SPRITES[sprite_code.to_sym]
+  x_coord = (x_index * SPRITE_WIDTH)
+  y_coord = (y_index * SPRITE_HEIGHT)
   
-  caminhos_sprites.each do |caminho_sprite|
-    Image.new(caminho_sprite, x: x_posicao, y: y_posicao, width: SPRITE_WIDTH, height: SPRITE_HEIGHT)
+  sprite_paths.each do |sprite_path|
+    Image.new(sprite_path, x: x_coord, y: y_coord, width: SPRITE_WIDTH, height: SPRITE_HEIGHT)
   end
 end
 

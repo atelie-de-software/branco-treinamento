@@ -16,15 +16,18 @@ SPRITES = {
   '=': ['assets/images/water.png'],
   ' ': ['assets/images/start.png'],
   ':': ['assets/images/finish.png'],
-  '7': ['assets/images/start.png'],
-  'Q': ['assets/images/left_car.png'],
-  'C': ['assets/images/right_car.png'],
+  '7': ['assets/images/start.png', 'assets/images/frog.png'],
+  'Q': ['assets/images/road.png', 'assets/images/left_car.png'],
+  'C': ['assets/images/road.png', 'assets/images/right_car.png'],
   '_': ['assets/images/road.png'],
   'X': ['assets/images/water.png', 'assets/images/dead.png'],
   'M': ['assets/images/start.png', 'assets/images/frog.png'],
   'O': ['assets/images/water.png', 'assets/images/leaf.png'],
   'B': ['assets/images/water.png', 'assets/images/leaf.png', 'assets/images/frog.png'],
-  '#': ['assets/images/finish.png', 'assets/images/frog.png']
+  '#': ['assets/images/finish.png', 'assets/images/frog.png'],
+  'S': ['assets/images/road.png', 'assets/images/frog.png'],
+  '>': ['assets/images/road.png', 'assets/images/dead.png', 'assets/images/right_car.png'],
+  '<': ['assets/images/road.png', 'assets/images/dead.png', 'assets/images/left_car.png']
 }
 
 background = Music.new('assets/sounds/TheRiver.mp3')

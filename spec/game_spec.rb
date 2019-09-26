@@ -242,7 +242,7 @@ RSpec.describe Game do
                'DEATH'
       end
 
-      xit 'frog dies if hit by a car coming from the left' do
+      it 'frog dies if hit by a car coming from the left' do
         wins_first_level(game)
 
         5.times do
@@ -264,7 +264,7 @@ RSpec.describe Game do
 
         screen ':::::',
                '__Q__',
-               '__X__',
+               '__>__',
                '__Q__',
                'DEATH'
       end

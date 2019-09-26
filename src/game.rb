@@ -54,7 +54,7 @@ class Game
   def screen
     @matrix = @level == 1 ? empty_matrix_first_map : empty_matrix_second_map
     game_engine
-    tile_overwrite
+    @level == 1 ? tile_overwrite1 : tile_overwrite2
 
     @matrix.flatten.join('')
   end
@@ -69,7 +69,7 @@ class Game
     end if @level > 1
   end
 
-  def tile_overwrite
+  def tile_overwrite1
     case @matrix[@frog_y][@frog_x]
     when '='
       @matrix[@frog_y][@frog_x] = 'X'
@@ -80,7 +80,25 @@ class Game
     when 'O'
       @matrix[@frog_y][@frog_x] = 'B'
     else
-      @matrix[@frog_y][@frog_x] = @level == 1 ? 'M' : '7'
+      @matrix[@frog_y][@frog_x] = 'M'
+    end
+  end
+
+  def tile_overwrite2
+    case @matrix[@frog_y][@frog_x]
+    when '_'
+      @matrix[@frog_y][@frog_x] = 'S'
+    when ':'
+      @matrix[@frog_y][@frog_x] = '#'
+      @matrix[4] = [' ', 'W', 'I', 'N', ' ']
+    when 'C'
+      @matrix[@frog_y][@frog_x] = '>'
+      @matrix[4] = ['D', 'E', 'A', 'T', 'H']
+    when 'Q'
+      @matrix[@frog_y][@frog_x] = '<'
+      @matrix[4] = ['D', 'E', 'A', 'T', 'H']
+    else
+      @matrix[@frog_y][@frog_x] = '7'
     end
   end
 
@@ -92,7 +110,7 @@ class Game
 
     if @ticks_depois_que_passou == 4
       @ticks_depois_que_passou = 0
-      @passou = 0
+      @passou = false
 
       @level += 1
       @frog_x = 2

@@ -66,7 +66,7 @@ class Game
   def tick
     @ticks += 1
 
-    if @ticks.modulo(DEFAULT_TICK_SPEED) == 0
+    if @ticks.modulo(DEFAULT_TICK_SPEED).zero?
       @rocks.each do |rock|
         rock[:dir] = -rock[:dir] if rock[:x] + rock[:dir] > 4 || rock[:x] + rock[:dir] < 0
 

@@ -164,7 +164,7 @@ RSpec.describe Game do
     end
 
     context 'after 5 ticks' do
-      xit 'renders second level with moving cars' do
+      it 'renders second level with moving cars' do
         wins_first_level(game)
 
         5.times do

@@ -10,6 +10,14 @@ class Game
       { x: 2, y: 2, dir: -1},
       { x: 2, y: 3, dir: 1}
     ]
+    @cars = [
+      { x: 3, y: 1, dir: -1},
+      { x: 1, y: 2, dir: 1},
+      { x: 3, y: 3, dir: -1}
+    ]
+    @level = 1
+    @passou = false
+    @ticks_depois_que_passou = 0
   end
 
   def move(dx: 0, dy: 0)
@@ -33,9 +41,18 @@ class Game
     ]
   end
 
-  def screen
-    @matrix = empty_matrix_first_map
+  def empty_matrix_second_map
+    [
+      [':', ':', ':', ':', ':', "\n"],
+      ['_', '_', '_', '_', '_', "\n"],
+      ['_', '_', '_', '_', '_', "\n"],
+      ['_', '_', '_', '_', '_', "\n"],
+      [' ', ' ', ' ', ' ', ' ']
+    ]
+  end
 
+  def screen
+    @matrix = @level == 1 ? empty_matrix_first_map : empty_matrix_second_map
     game_engine
     tile_overwrite
 
@@ -45,7 +62,11 @@ class Game
   def game_engine
     @rocks.each do |rock|
       @matrix[rock[:y]][rock[:x]] = 'O'
-    end
+    end if @level == 1
+
+    @cars.each do |car|
+      @matrix[car[:y]][car[:x]] = car[:dir] == 1 ? 'C' : 'Q'
+    end if @level > 1
   end
 
   def tile_overwrite
@@ -59,19 +80,38 @@ class Game
     when 'O'
       @matrix[@frog_y][@frog_x] = 'B'
     else
-      @matrix[@frog_y][@frog_x] = 'M'
+      @matrix[@frog_y][@frog_x] = @level == 1 ? 'M' : '7'
     end
   end
 
   def tick
     @ticks += 1
+    @ticks_depois_que_passou += 1 if @passou
 
-    if @ticks.modulo(DEFAULT_TICK_SPEED).zero?
+    @passou = true if @frog_y == 0
+
+    if @ticks_depois_que_passou == 4
+      @ticks_depois_que_passou = 0
+      @passou = 0
+
+      @level += 1
+      @frog_x = 2
+      @frog_y = 4
+    end
+
+    if @ticks.modulo(DEFAULT_TICK_SPEED).zero? && @level == 1
       @rocks.each do |rock|
         rock[:dir] = -rock[:dir] if rock[:x] + rock[:dir] > 4 || rock[:x] + rock[:dir] < 0
 
         @frog_x += rock[:dir] if rock[:x] == @frog_x && rock[:y] == @frog_y
         rock[:x] += rock[:dir]
+      end
+    end
+
+    if @ticks.modulo(8).zero? && @level > 1
+      @cars.each do |car|
+        # @frog_x += car[:dir] if car[:x] == @frog_x && car[:y] == @frog_y
+        car[:x] += car[:dir]
       end
     end
 

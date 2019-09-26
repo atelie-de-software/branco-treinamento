@@ -269,7 +269,7 @@ RSpec.describe Game do
                'DEATH'
       end
 
-      xit 'frog wins second level if it crosses the map' do
+      it 'frog wins second level if it crosses the map' do
         wins_first_level(game)
 
         5.times do
@@ -285,16 +285,6 @@ RSpec.describe Game do
                '___Q_',
                '_C___',
                '___Q_',
-               ' WIN '
-
-        8.times do
-          game.tick
-        end
-
-        screen '::#::',
-               '__Q__',
-               '__C__',
-               '__Q__',
                ' WIN '
       end
     end

@@ -5,6 +5,7 @@ class Game
     @ticks = 0
     @frog_x = 0
     @frog_y = 4
+    @dead = false
     @rocks = [
       { x: 2, y: 1, dir: 1},
       { x: 2, y: 2, dir: -1},
@@ -18,6 +19,7 @@ class Game
     @level = 1
     @passou = false
     @ticks_depois_que_passou = 0
+    @ticks_after_death = 0
   end
 
   def move(dx: 0, dy: 0)
@@ -105,6 +107,7 @@ class Game
   def tick
     @ticks += 1
     @ticks_depois_que_passou += 1 if @passou
+    @ticks_after_death += 1 if @dead
 
     @passou = true if @frog_y == 0
 
@@ -117,23 +120,46 @@ class Game
       @frog_y = 4
     end
 
-    if @ticks.modulo(DEFAULT_TICK_SPEED).zero? && @level == 1
-      @rocks.each do |rock|
-        rock[:dir] = -rock[:dir] if rock[:x] + rock[:dir] > 4 || rock[:x] + rock[:dir] < 0
+    if @level == 1
+      if @ticks.modulo(DEFAULT_TICK_SPEED).zero?
+        @rocks.each do |rock|
+          rock[:dir] = -rock[:dir] if rock[:x] + rock[:dir] > 4 || rock[:x] + rock[:dir] < 0
 
-        @frog_x += rock[:dir] if rock[:x] == @frog_x && rock[:y] == @frog_y
-        rock[:x] += rock[:dir]
+          @frog_x += rock[:dir] if rock[:x] == @frog_x && rock[:y] == @frog_y
+          rock[:x] += rock[:dir]
+        end
+      end
+
+      @dead = is_dead_on_level1
+    else
+      if @ticks.modulo(8).zero?
+        @cars.each do |car|
+          car[:x] += car[:dir]
+          car[:x] = 4 if car[:x] == -1
+          car[:x] = 0 if car[:x] == 5
+        end
       end
     end
 
-    if @ticks.modulo(8).zero? && @level > 1
-      @cars.each do |car|
-        car[:x] += car[:dir]
-        car[:x] = 4 if car[:x] == -1
-        car[:x] = 0 if car[:x] == 5
-      end
+    if @dead && @level == 1 && @ticks_after_death == 9
+      @ticks_after_death = 0
+      @dead = false
+      @frog_x = 0
+      @frog_y = 4
     end
 
     self
+  end
+
+  private
+
+  def is_dead_on_level1
+    result = false
+    @rocks.each do |rock|
+      result = true if (rock[:x] != @frog_x && rock[:y] != @frog_y) && (@frog_y > 0 && @frog_y < 4)
+      break
+    end
+
+    result
   end
 end

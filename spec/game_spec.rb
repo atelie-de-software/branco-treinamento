@@ -77,6 +77,20 @@ RSpec.describe Game do
                'DEATH'
       end
 
+      it 'goes back to begining 10 ticks after death' do
+        game.up
+
+        10.times do
+          game.tick
+        end
+
+        screen ':::::',
+               '===O=',
+               '=O===',
+               '===O=',
+               'M    '
+      end
+
       it 'die moving right' do
         moves_to_plant
         game.right

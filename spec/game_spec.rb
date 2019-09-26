@@ -152,7 +152,7 @@ RSpec.describe Game do
     end
 
     context 'before 5 ticks' do
-      xit 'shows victory screen' do
+      it 'shows victory screen' do
         wins_first_level(game)
 
         screen '::#::',
@@ -267,6 +267,22 @@ RSpec.describe Game do
                '__X__',
                '__Q__',
                'DEATH'
+      end
+
+      xit 'frog wins second level if it crosses the map' do
+        wins_first_level(game)
+
+        5.times do
+          game.tick
+        end
+
+        game.up.up.up.up
+
+        screen '::#::',
+               '___Q_',
+               '_C___',
+               '___Q_',
+               ' WIN '
       end
     end
   end

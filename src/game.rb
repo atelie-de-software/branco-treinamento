@@ -1,5 +1,7 @@
 class Game
   DEFAULT_TICK_SPEED = 10.freeze
+  attr_accessor :level
+  attr_accessor :dead
 
   def initialize
     @ticks = 0

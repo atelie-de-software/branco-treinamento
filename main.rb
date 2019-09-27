@@ -29,19 +29,46 @@ SPRITES = {
   '>': ['assets/images/road.png', 'assets/images/dead.png', 'assets/images/right_car.png'],
   '<': ['assets/images/road.png', 'assets/images/dead.png', 'assets/images/left_car.png']
 }
+
+AUDIO = {
+  'FrogJump': 'assets/sounds/FrogJump.mp3',
+  'Splash': 'assets/sounds/Splash.mp3',
+  'TopGear3': 'assets/sounds/TopGear3.mp3',
+  'TheRiver': 'assets/sounds/TheRiver.mp3'
+}
+
+def create_sound sound_code
+  sound_path = AUDIO[sound_code.to_sym]
+  Sound.new(sound_path)
+end
+
+def create_music sound_music
+  music_path = AUDIO[sound_music.to_sym]
+  music = Music.new(music_path)
+  music.loop = true
+  music.volume = 30
+ 
+  music
+end
+
+def render_sprite sprite_code, x_index, y_index
+  sprite_paths = SPRITES[sprite_code.to_sym]
+  x_coord = (x_index * SPRITE_WIDTH)
+  y_coord = (y_index * SPRITE_HEIGHT)
+  
+  sprite_paths.each do |sprite_path|
+    Image.new(sprite_path, x: x_coord, y: y_coord, width: SPRITE_WIDTH, height: SPRITE_HEIGHT)
+  end
+end
+
 barulho_agua = 0
 level = 1
 
-background = Music.new('assets/sounds/TheRiver.mp3')
-background.loop = true
-background.volume = 30
+background_first_level = create_music('TheRiver')
+background_second_level = create_music('TopGear3')
 
-background2 = Music.new('assets/sounds/TopGear3.mp3')
-background2.loop = true
-background2.volume = 30
-
-frog_jump = Sound.new('assets/sounds/FrogJump.mp3')
-splash = Sound.new('assets/sounds/Splash.mp3')
+frog_jump = create_sound('FrogJump')
+splash = create_sound('Splash')
 game = Game.new
 
 update do
@@ -51,13 +78,11 @@ update do
   game_screen = game.screen
 
   if level == 1 && !game_screen.count('_').positive?
-    background2.stop
-    background.play
+    background_first_level.play
     level += 1
   else
     if level == 2 && game_screen.count('_').positive?
-      background.stop
-      background2.play
+      background_second_level.play
       level += 1
     end
   end
@@ -85,16 +110,6 @@ on :key_down do |event|
   game.down if event.key == 'down'
 
   frog_jump.play
-end
-
-def render_sprite sprite_code, x_index, y_index
-  sprite_paths = SPRITES[sprite_code.to_sym]
-  x_coord = (x_index * SPRITE_WIDTH)
-  y_coord = (y_index * SPRITE_HEIGHT)
-  
-  sprite_paths.each do |sprite_path|
-    Image.new(sprite_path, x: x_coord, y: y_coord, width: SPRITE_WIDTH, height: SPRITE_HEIGHT)
-  end
 end
 
 show

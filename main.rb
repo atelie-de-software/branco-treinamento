@@ -61,8 +61,8 @@ def render_sprite sprite_code, x_index, y_index
   end
 end
 
-barulho_agua = 0
-level = 1
+water_splash = 0
+music_counter = 1
 
 background_first_level = create_music('TheRiver')
 background_second_level = create_music('TopGear3')
@@ -77,13 +77,13 @@ update do
 
   game_screen = game.screen
 
-  if level == 1 && !game_screen.count('_').positive?
+  if music_counter == 1 && game.level == 1
     background_first_level.play
-    level += 1
+    music_counter += 1
   else
-    if level == 2 && game_screen.count('_').positive?
+    if music_counter == 2 && game.level > 1
       background_second_level.play
-      level += 1
+      music_counter += 1
     end
   end
 
@@ -94,9 +94,9 @@ update do
     end
   end
 
-  if game_screen.count('X').positive? && barulho_agua == 0
+  if game.dead && water_splash == 0
     splash.play
-    barulho_agua += 1
+    water_splash += 1
   end
 
   sleep 0.2
@@ -109,7 +109,7 @@ on :key_down do |event|
   game.up if event.key == 'up'
   game.down if event.key == 'down'
 
-  frog_jump.play
+  frog_jump.play if !game.dead
 end
 
 show

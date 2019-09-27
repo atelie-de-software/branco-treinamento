@@ -156,7 +156,7 @@ class Game
   def is_dead_on_level1
     result = false
     @rocks.each do |rock|
-      result = true if (rock[:x] != @frog_x && rock[:y] != @frog_y) && (@frog_y > 0 && @frog_y < 4)
+      result = true if (rock[:x] != @frog_x && rock[:y] != @frog_y) && (@frog_y > 0 && @frog_y < 5)
       break
     end
 

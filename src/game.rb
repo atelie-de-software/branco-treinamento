@@ -31,6 +31,7 @@ class Game
     @frog_x = [[0, @frog_x + dx].max, 4].min
 
     @dead = is_dead_on_level1 if @level == 1
+    @dead = is_dead_on_level2 if @level == 2
 
     self
   end
@@ -146,9 +147,11 @@ class Game
           car[:x] = 0 if car[:x] == 5
         end
       end
+      @dead = is_dead_on_level2
     end
 
     respawns_level1 if @dead && @level == 1 && @ticks_after_death == 9
+    respawns_level2 if @dead && @level == 2 && @ticks_after_death == 9
 
     self
   end
@@ -162,6 +165,13 @@ class Game
     @frog_y = 4
   end
 
+  def respawns_level2
+    @ticks_after_death = 0
+    @dead = false
+    @frog_x = 2
+    @frog_y = 4
+  end
+
   def is_dead_on_level1
     return false if (@frog_y == 0 || @frog_y == 5)
 
@@ -169,6 +179,21 @@ class Game
 
     @rocks.each do |rock|
       if (rock[:x] != @frog_x && rock[:y] == @frog_y)
+        result = true
+        break
+      end
+    end
+
+    result
+  end
+
+  def is_dead_on_level2
+    return false if (@frog_y == 0 || @frog_y == 5)
+
+    result = false
+
+    @cars.each do |car|
+      if (car[:x] == @frog_x && car[:y] == @frog_y)
         result = true
         break
       end

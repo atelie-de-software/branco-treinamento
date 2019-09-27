@@ -243,6 +243,23 @@ RSpec.describe Game do
                '  7  '
       end
 
+      it 'frog cannot move after dying' do
+         wins_first_level(game)
+
+        5.times do
+          game.tick
+        end
+
+        game.right.up.up.up
+
+        screen ':::::',
+               '___Q_',
+               '_C___',
+               '___<_',
+               'DEATH'
+
+      end
+
       it 'frog dies if hit by a car coming from the right' do
         wins_first_level(game)
 

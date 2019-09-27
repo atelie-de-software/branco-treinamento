@@ -59,6 +59,19 @@ RSpec.describe Game do
                'X=O==',
                'DEATH'
       end
+
+      it 'cannot move after dying' do
+        game.up
+        game.up
+        game.left
+        game.right
+
+        screen ':::::',
+               '==O==',
+               '==O==',
+               'X=O==',
+               'DEATH'
+      end
     end
 
     context 'from a plant' do

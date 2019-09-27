@@ -23,8 +23,13 @@ class Game
   end
 
   def move(dx: 0, dy: 0)
+    return self if @dead
+
     @frog_y = [[0, @frog_y + dy].max, 4].min
     @frog_x = [[0, @frog_x + dx].max, 4].min
+
+    @dead = is_dead_on_level1 if @level == 1
+
     self
   end
 
@@ -141,23 +146,30 @@ class Game
       end
     end
 
-    if @dead && @level == 1 && @ticks_after_death == 9
-      @ticks_after_death = 0
-      @dead = false
-      @frog_x = 0
-      @frog_y = 4
-    end
+    respawns_level1 if @dead && @level == 1 && @ticks_after_death == 9
 
     self
   end
 
   private
 
+  def respawns_level1
+    @ticks_after_death = 0
+    @dead = false
+    @frog_x = 0
+    @frog_y = 4
+  end
+
   def is_dead_on_level1
+    return false if (@frog_y == 0 || @frog_y == 5)
+
     result = false
+
     @rocks.each do |rock|
-      result = true if (rock[:x] != @frog_x && rock[:y] != @frog_y) && (@frog_y > 0 && @frog_y < 5)
-      break
+      if (rock[:x] != @frog_x && rock[:y] == @frog_y)
+        result = true
+        break
+      end
     end
 
     result
